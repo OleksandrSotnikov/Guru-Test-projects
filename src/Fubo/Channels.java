@@ -1,3 +1,5 @@
+package Fubo;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -30,7 +32,7 @@ public class Channels {
         // Wait until download.
         Thread.sleep(5000);
 
-        // Click on 'Channels' tab.
+        // Click on 'Fubo.Channels' tab.
         cd.findElement(By.xpath("id(\"root\")/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/a[1]/span[1]")).click();
 
         // Wait until download.
