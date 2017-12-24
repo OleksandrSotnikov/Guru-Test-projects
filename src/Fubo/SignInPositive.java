@@ -20,7 +20,7 @@ public class SignInPositive {
         cd.get("https://qa.fubo.tv/sandbox/geolocation");
 
         // Wait until webside with spoofing download.
-        Thread.sleep(2000);
+        Thread.sleep(10000);
 
         // Input value USA.
         cd.findElement(By.xpath("id(\"root\")/div[1]/div[1]/div[1]/div[1]/div[1]/form[1]/div[1]/div[2]/div[1]/input[1]")).sendKeys(new String[]{"USA"});
