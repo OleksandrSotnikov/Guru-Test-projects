@@ -38,7 +38,7 @@ public class SignInPositive {
         cd.findElement(By.xpath("id(\"root\")/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[5]/div[1]/button[1]/div[1]/span[1]")).click();
 
         // email value:
-        String testEmail = "test@dummy.com";
+        String testEmail = "123test123@dummy.com";
 
         // Array for sending values
         String[] myArray = {testEmail};
@@ -67,8 +67,20 @@ public class SignInPositive {
         // Get information from 'My Profile' about user email.
         String useremail = cd.findElement(By.xpath("id(\"root\")/div[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[2]/span[1]")).getText();
 
+        // Click 'Subscription' tab.
+        cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div[4]/div[2]/div/div[1]/p[2]/span")).click();
+
+        // Wait
+        Thread.sleep(2000);
+
+        // Get information from 'My Subscription'
+        String userpackage = cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div[4]/div[2]/div/div[2]/div[1]/div[2]/div[1]/div[2]/span")).getText();
+
         // Display user email.
         System.out.println("User email is: " + useremail);
+
+        // Display user package
+        System.out.println("User package is: " + userpackage);
 
         // Compare emails:
         if (testEmail.equals(useremail)) {

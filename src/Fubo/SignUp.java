@@ -32,10 +32,10 @@ public class SignUp {
 
         // Input email.
 
-        String prefix="aaaa";
-        String suffix="@dummy.com";
+        String prefix = "aaaa";
+        String suffix = "@dummy.com";
 
-        String testEmail = prefix+ Math.round(Math.random()*1000000) + suffix;
+        String testEmail = prefix + Math.round(Math.random() * 1000000) + suffix;
 
         cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div/div/div[2]/div/form/div[1]/div/input")).sendKeys(new String[]{testEmail});
 
@@ -79,8 +79,8 @@ public class SignUp {
         cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div[3]/div/div[1]/form/div/div[1]/div/input")).sendKeys(new String[]{"First"});
         cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div[3]/div/div[1]/form/div/div[2]/div/input")).sendKeys(new String[]{"Last"});
 
-        Integer numberOfFrames = Integer.parseInt(cd.executeScript("return window.length").toString());
-        System.out.println("Number of iframes on the page are " + numberOfFrames);
+        //Integer numberOfFrames = Integer.parseInt(cd.executeScript("return window.length").toString());
+        //System.out.println("Number of iframes on the page are " + numberOfFrames);
 
         cd.switchTo().frame(0);     // entering the iframe
 
@@ -115,7 +115,47 @@ public class SignUp {
         // Click 'Start Watching' button.
         cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div[3]/div/div[2]/div[1]/button/div/span")).click();
 
+        // Wait
+        Thread.sleep(5000);
+
+        // Click on menu button.
+        cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div/div[3]/div/div[2]/div/div/div/div[2]/div/div[1]/div/span[2]")).click();
+
+        // Click My Account.
+        cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div/div[3]/div/div[2]/div/div/div/div[2]/div/div[2]/div/div[2]/div/a[1]/span")).click();
+
+        // Wait
+        Thread.sleep(5000);
+
+        // Get information from 'My Profile' about user email.
+        String useremail = cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div[4]/div[2]/div/div[2]/div[1]/div[2]/div[2]/div[2]/span")).getText();
+
+        // Click 'Subscription' tab.
+        cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div[4]/div[2]/div/div[1]/p[2]/span")).click();
+
+        // Wait
+        Thread.sleep(2000);
+
+        // Get information from 'My Subscription'
+        String userpackage = cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div[4]/div[2]/div/div[2]/div[1]/div[2]/div[1]/div[2]/span")).getText();
+
+        // Display user package
+        System.out.println("User package is: " + userpackage);
+
+        // Display user email.
+        System.out.println("User email is: " + useremail);
+
+        // Compare emails:
+        if (testEmail.equals(useremail)) {
+            // emails are the same
+            System.out.println("Emails are equals");
+            cd.close();
+        } else {
+            System.out.println("Emails are different");
+            // emails are different
 
 
+        }
     }
+
 }
