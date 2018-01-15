@@ -1,7 +1,12 @@
 package Fubo;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class SignInFacebook {
     public static void main(String[] args) throws InterruptedException {
@@ -15,7 +20,7 @@ public class SignInFacebook {
         String[] myArray = {testEmail};
 
         // Open browser.
-        ChromeDriver cd = new ChromeDriver();
+        WebDriver cd = new ChromeDriver();
 
         // Open Spoofing
         cd.get("https://qa.fubo.tv/sandbox/geolocation");
@@ -42,7 +47,7 @@ public class SignInFacebook {
         Thread.sleep(2000);
 
         // Click 'Sign In With Facebook' button.
-        cd.findElementByCssSelector("body > div.ReactModalPortal > div > div > div > div.modal-content.modal-small > div.modal-body > div > div > div:nth-child(1) > button:nth-child(1)").click();
+        cd.findElement(By.cssSelector("body > div.ReactModalPortal > div > div > div > div.modal-content.modal-small > div.modal-body > div > div > div:nth-child(1) > button:nth-child(1)")).click();
 
         // Wait.
         Thread.sleep(5000);
@@ -50,8 +55,11 @@ public class SignInFacebook {
         // Store the current window handle
         String winHandleBefore = cd.getWindowHandle();
 
+
+        Set<String> handles = cd.getWindowHandles();
+
         // Switch to new window opened
-        for (String winHandle : cd.getWindowHandles()) {
+        for (String winHandle : handles) {
             cd.switchTo().window(winHandle);
             System.out.println("Window switch");
             System.out.println(cd.getTitle());
@@ -72,7 +80,7 @@ public class SignInFacebook {
         cd.switchTo().window(winHandleBefore);
 
         // Click on 'Menu' button.
-        cd.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div[1]/div/div[3]/div/div[2]/div/div/div/div[1]/div/div[1]/div/span[2]/svg/path")).click();
+        cd.findElement(By.cssSelector("#root > div > div > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(3) > div > div:nth-child(2) > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > span:nth-child(1)")).click();
 
         // Wait.
         Thread.sleep(2000);
